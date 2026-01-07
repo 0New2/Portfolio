@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Professionnel</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #121212;
+            --accent: #00f0ff;
+            --accent-glow: rgba(0, 240, 255, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .gradient-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--gradient-1);
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-2);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: 7s;
+        }
+
+        .blob-3 {
+            width: 350px;
+            height: 350px;
+            background: var(--gradient-3);
+            top: 50%;
+            left: 50%;
+            animation-delay: 14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-50px, 50px) scale(0.9); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 20px 0;
+            background: rgba(10, 10, 10, 0.95);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 50px;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 5em;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero .gradient-text {
+            background: linear-gradient(135deg, var(--accent), #667eea, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .hero p {
+            font-size: 1.4em;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #667eea);
+            color: var(--bg-dark);
+            box-shadow: 0 10px 40px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 30px;
+            color: var(--accent);
+            font-size: 0.85em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 3.5em;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 240, 255, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            background: var(--accent);
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+        }
+
+        .project-content {
+            padding: 35px;
+            position: relative;
+        }
+
+        .project-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .status-complete {
+            background: rgba(76, 175, 80, 0.15);
+            color: #4caf50;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .status-progress {
+            background: rgba(255, 152, 0, 0.15);
+            color: #ff9800;
+            border: 1px solid rgba(255, 152, 0, 0.3);
+        }
+
+        .project-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            gap: 12px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(0, 240, 255, 0.2);
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), #667eea);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            color: var(--text-secondary);
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95em;
+        }
+
+        .skill-list li::before {
+            content: '→';
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 240, 255, 0.3);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .contact-icon {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .contact-card h3 {
+            color: var(--text-primary);
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .contact-card p {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+        }
+
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 60px;
+            position: relative;
+            animation: modalSlideIn 0.4s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.5em;
+            color: var(--text-secondary);
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(90deg);
+            color: var(--text-primary);
+        }
+
+        .modal h3 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .modal p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .modal strong {
+            color: var(--text-primary);
+            display: block;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            nav ul {
+                gap: 30px;
+            }
+
+            .hero h1 {
+                font-size: 3em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            h2 {
+                font-size: 2.5em;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 40px 30px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation">
+        <div class="gradient-blob blob-1"></div>
+        <div class="gradient-blob blob-2"></div>
+        <div class="gradient-blob blob-3"></div>
+    </div>
+
+    <nav id="navbar">
+        <div class="container">
+            <div class="logo">Portfolio</div>
+            <ul>
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#skills">Compétences</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>
+                    Apprenant passionné en <span class="gradient-text">Développement Web</span>
+                </h1>
+                <p>
+                    En apprentissage autodidacte, je construis mes compétences en développement web projet après projet. Chaque ligne de code est une opportunité d'apprendre et de progresser vers mon objectif : faire du développement web mon métier.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        Découvrir mes projets
+                        <span>→</span>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        Me contacter
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Réalisations</span>
+                <h2>Mes Projets d'Apprentissage</h2>
+                <p class="section-subtitle">
+                    Chaque projet représente une étape de mon parcours autodidacte et les compétences que j'ai acquises en pratiquant
+                </p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card" onclick="openModal('project1')">
+                    <div class="project-image"></div>
+                    <div class="project-content">
+                        <span class="project-status status-complete">✓ Terminé</span>
+                        <h3>Questionnaire de Satisfaction Intelligent</h3>
+                        <p>
+                            Premier projet d'envergure où j'ai appris à intégrer des API externes (Gmail et Google Sheets). Une excellente opportunité de comprendre l'automatisation et la gestion de données.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">API Gmail</span>
+                            <span class="tag">Google Sheets</span>
+                            <span class="tag">Automatisation</span>
+                        </div>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <a href="https://0new2.github.io/Satisfaction-client---INNOVART/" target="_blank" class="project-link" onclick="event.stopPropagation()" style="flex: 1;">
+                                Voir le site
+                                <span>→</span>
+                            </a>
+                            <a href="demo-questionnaire.html" target="_blank" class="project-link" onclick="event.stopPropagation()" style="flex: 1; background: linear-gradient(135deg, #f093fb, #f5576c);">
+                                Voir la démo
+                                <span>🎬</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openModal('project2')">
+                    <div class="project-image"></div>
+                    <div class="project-content">
+                        <span class="project-status status-complete">✓ Terminé</span>
+                        <h3>Plateforme Équipe Paintball</h3>
+                        <p>
+                            Projet complet développé pour mon association de paintball. J'ai appris les bases du HTML/CSS/JavaScript et comment créer un site responsive de A à Z, parti de zéro.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">HTML5/CSS3</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Responsive Design</span>
+                            <span class="tag">UX/UI</span>
+                        </div>
+                        <a href="https://7nains-paintball.fr" target="_blank" class="project-link" onclick="event.stopPropagation()">
+                            Visiter le site
+                            <span>→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openModal('project3')">
+                    <div class="project-image"></div>
+                    <div class="project-content">
+                        <span class="project-status status-progress">⚙️ En développement</span>
+                        <h3>Application Mobile Loup-Garou</h3>
+                        <p>
+                            Mon projet actuel le plus ambitieux : une application React Native avec Firebase. Un challenge qui me pousse à apprendre le développement mobile et la gestion de base de données en temps réel.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">React Native</span>
+                            <span class="tag">Firebase</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <a href="#" class="project-link" onclick="event.stopPropagation()">
+                            Aperçu du projet
+                            <span>→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Apprentissage</span>
+                <h2>Compétences en Développement</h2>
+                <p class="section-subtitle">
+                    Les technologies et outils que j'ai appris à utiliser au fil de mes projets autodidactes
+                </p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>Développement Front-End</h3>
+                    <ul class="skill-list">
+                        <li>HTML5 & CSS3 Moderne</li>
+                        <li>JavaScript ES6+</li>
+                        <li>Design Responsive</li>
+                        <li>Animations & Interactions</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🛠️</div>
+                    <h3>Outils de Développement</h3>
+                    <ul class="skill-list">
+                        <li>Git & GitHub</li>
+                        <li>Visual Studio Code</li>
+                        <li>DevTools Chrome</li>
+                        <li>NPM & Yarn</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🔗</div>
+                    <h3>Intégration d'API</h3>
+                    <ul class="skill-list">
+                        <li>API REST</li>
+                        <li>Google Workspace APIs</li>
+                        <li>Authentification OAuth</li>
+                        <li>Gestion des données</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🤖</div>
+                    <h3>Intelligence Artificielle</h3>
+                    <ul class="skill-list">
+                        <li>Claude AI</li>
+                        <li>Claude Code</li>
+                        <li>Figma Maker</li>
+                        <li>Prompt Engineering</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">📱</div>
+                    <h3>Développement Mobile</h3>
+                    <ul class="skill-list">
+                        <li>React Native</li>
+                        <li>Firebase</li>
+                        <li>Base de données temps réel</li>
+                        <li>Navigation mobile</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h3>Design & UX</h3>
+                    <ul class="skill-list">
+                        <li>UI/UX Principles</li>
+                        <li>Prototypage</li>
+                        <li>Design Systems</li>
+                        <li>Accessibilité Web</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Contact</span>
+                <h2>Discutons de vos Projets</h2>
+                <p class="section-subtitle">
+                    Je suis ouvert aux opportunités d'apprentissage, de stage ou de collaboration sur des projets web
+                </p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-grid">
+                    <a href="mailto:votre.email@example.com" class="contact-card">
+                        <span class="contact-icon">📧</span>
+                        <h3>Email</h3>
+                        <p>votre.email@example.com</p>
+                    </a>
+                    <a href="https://github.com/votre-username" target="_blank" class="contact-card">
+                        <span class="contact-icon">💻</span>
+                        <h3>GitHub</h3>
+                        <p>@votre-username</p>
+                    </a>
+                    <a href="https://linkedin.com/in/votre-profile" target="_blank" class="contact-card">
+                        <span class="contact-icon">💼</span>
+                        <h3>LinkedIn</h3>
+                        <p>Votre Nom</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Portfolio. Conçu et développé avec passion.</p>
+        </div>
+    </footer>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">×</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const projectDetails = {
+            project1: {
+                content: `
+                    <h3>Questionnaire de Satisfaction Intelligent</h3>
+                    <p><strong>Contexte d'apprentissage</strong></p>
+                    <p>Ce projet était mon premier vrai défi avec les API externes. Je voulais créer quelque chose d'utile tout en apprenant comment faire communiquer différents services entre eux.</p>
+                    
+                    <p><strong>Ce que j'ai appris</strong></p>
+                    <p>• Comment utiliser l'API Gmail pour envoyer des emails automatiques<br>
+                    • L'intégration de Google Sheets pour stocker des données<br>
+                    • La validation de formulaires côté client<br>
+                    • La gestion des erreurs et le feedback utilisateur<br>
+                    • L'importance d'une interface responsive</p>
+                    
+                    <p><strong>Les défis rencontrés</strong></p>
+                    <p>Au début, je ne comprenais rien aux API REST. J'ai dû beaucoup chercher, lire de la documentation et tester. Faire communiquer Gmail et Google Sheets ensemble était particulièrement complexe pour un débutant.</p>
+                    
+                    <p><strong>Résultat</strong></p>
+                    <p>Un système fonctionnel qui collecte les réponses, les enregistre automatiquement et envoie des emails. Même si le code pourrait être optimisé, je suis fier d'avoir réussi à créer quelque chose de concret et fonctionnel.</p>
+                `
+            },
+            project2: {
+                content: `
+                    <h3>Plateforme Équipe Paintball</h3>
+                    <p><strong>Mon premier vrai site web</strong></p>
+                    <p>J'ai créé ce site complet pour mon association de paintball en partant de zéro. C'était mon premier grand projet et j'ai tout appris en le faisant : HTML, CSS, JavaScript, design responsive.</p>
+                    
+                    <p><strong>Ce que j'ai découvert</strong></p>
+                    <p>• Les bases du HTML et de la structure d'une page<br>
+                    • Comment styliser avec CSS et créer un design moderne<br>
+                    • Le JavaScript pour rendre le site interactif<br>
+                    • L'importance du responsive design pour mobile<br>
+                    • L'organisation de fichiers et de code propre</p>
+                    
+                    <p><strong>Le parcours d'apprentissage</strong></p>
+                    <p>Au début je ne savais même pas ce qu'était une balise HTML. J'ai suivi des tutoriels, expérimenté, cassé le site plusieurs fois et recommencé. Chaque fonctionnalité (galerie photo, formulaire, menu) était un nouveau challenge.</p>
+                    
+                    <p><strong>Résultat</strong></p>
+                    <p>Un site complet et fonctionnel avec plusieurs pages interconnectées, utilisé réellement par mon association. Ce projet m'a donné confiance et l'envie de continuer à apprendre.</p>
+                `
+            },
+            project3: {
+                content: `
+                    <h3>Application Mobile Loup-Garou</h3>
+                    <p><strong>Mon projet le plus ambitieux</strong></p>
+                    <p>Une application mobile React Native pour jouer au Loup-Garou avec multijoueur en temps réel. C'est mon plus gros défi d'apprentissage : découvrir React Native, Firebase, et créer une vraie app mobile fonctionnelle.</p>
+                    
+                    <p><strong>Ce que j'apprends actuellement</strong></p>
+                    <p>• React Native pour le développement mobile<br>
+                    • Firebase pour la base de données en temps réel<br>
+                    • La gestion d'état complexe dans une application<br>
+                    • La synchronisation de données entre plusieurs utilisateurs<br>
+                    • L'architecture d'une application plus grande</p>
+                    
+                    <p><strong>Les défis du projet</strong></p>
+                    <p>Passer du web au mobile est un gros saut. Je découvre comment structurer une application avec plusieurs écrans, gérer la logique de jeu complexe, et faire communiquer plusieurs joueurs en temps réel via Firebase. C'est difficile mais passionnant.</p>
+                    
+                    <p><strong>État d'avancement</strong></p>
+                    <p>Le système de lobby fonctionne, la synchronisation des joueurs est opérationnelle. Je travaille maintenant sur la logique de jeu complète. Chaque fonctionnalité qui marche est une vraie victoire !</p>
+                    
+                    <p><strong>Objectif</strong></p>
+                    <p>Créer une application mobile complète et la publier. Ce serait mon premier projet disponible pour le grand public et une énorme étape dans mon apprentissage.</p>
+                `
+            }
+        };
+
+        function openModal(projectId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = projectDetails[projectId].content;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
