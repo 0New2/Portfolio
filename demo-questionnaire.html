@@ -266,7 +266,147 @@
         }
 
         @media (max-width: 1200px) {
-            .panels { grid-template-columns: 1fr; }
+            .panels { 
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .panel {
+                min-height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 0;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .back-button {
+                font-size: 0.9em;
+                padding: 10px 20px;
+            }
+
+            .panel-header {
+                padding: 15px;
+                font-size: 1em;
+            }
+
+            .panel-content {
+                padding: 20px;
+            }
+
+            .logo {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            .logo h2 {
+                font-size: 1.5em;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-group label {
+                font-size: 0.9em;
+            }
+
+            .rating {
+                gap: 8px;
+            }
+
+            .rating-btn {
+                width: 38px;
+                height: 38px;
+                font-size: 1.1em;
+            }
+
+            .submit-btn {
+                padding: 12px;
+                font-size: 1em;
+            }
+
+            .empty {
+                padding: 50px 15px;
+            }
+
+            .empty-icon {
+                font-size: 3em;
+            }
+
+            .email-card {
+                padding: 15px;
+            }
+
+            .email-subject {
+                font-size: 1.1em;
+            }
+
+            .email-body {
+                font-size: 0.9em;
+            }
+
+            table {
+                font-size: 0.75em;
+            }
+
+            th, td {
+                padding: 8px 5px;
+            }
+
+            th {
+                font-size: 0.8em;
+            }
+
+            .info-banner {
+                font-size: 0.9em;
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .header p {
+                font-size: 0.9em;
+            }
+
+            .logo h2 {
+                font-size: 1.3em;
+            }
+
+            .rating {
+                gap: 5px;
+            }
+
+            .rating-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 1em;
+            }
+
+            table {
+                font-size: 0.7em;
+            }
+
+            th, td {
+                padding: 6px 3px;
+            }
         }
     </style>
 </head>
